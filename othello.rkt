@@ -15,7 +15,7 @@
 (define display-row
   (lambda (row)
     (println (map third row))))
-    
+
 (define display
   (lambda (m)
     (cond
@@ -23,14 +23,14 @@
       (else (display-row (car m))
             (display (cdr m))))))
 ;;FIXME
-(define swap-at
+(define swap
   (lambda (pt what)
     (list (car pt) (second pt) what)))
-     
+
 (define replace-at
   (lambda (lst n what)
     (cond
-      ((zero? n) (cons (swap-at (car lst) what) (cdr lst)))
+      ((zero? n) (cons (swap (car lst) what) (cdr lst)))
       (else (cons (car lst) (replace-at (cdr lst) (- n 1) what))))))
 
 (define update
@@ -39,4 +39,3 @@
       ((zero? y) (cons (replace-at (car m) x what) (cdr m)))
       (else (cons (car m)
                   (update (cdr m) (- y 1) x what))))))
-       
